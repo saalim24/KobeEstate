@@ -13,6 +13,12 @@ export const signup = async (req, res, next) => {
     next(error);
   }
 };
+const errorHandler = (statusCode, message) => {
+  const error = new Error(message);
+  error.statusCode = statusCode;
+  return error;
+};
+
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {

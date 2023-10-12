@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { signInFailure, signInSuccess } from "../redux/user/userSlice";
 
 export default function Signup() {
   const [formData, setFormData] = useState({});
@@ -26,15 +27,13 @@ export default function Signup() {
       });
       const data = await res.json();
       if (data.success === false) {
-        setError(data.message);
-        setLoading(false);
+        dispatch(signInFailure(data.message));
         return;
-      } 
-      setLoading(false);
-      setError(null);
+      }
+      dispatch(signInSuccess(data));
       navigate("/signin");
     } catch (e) {
-      setLoading(false);
+      dispatch()
       console.log(e.message);
     }
   };
@@ -72,7 +71,7 @@ export default function Signup() {
       </form>
       <div className="flex gap-2 mt-5">
         <p>Have an account?</p>
-        <Link to={"/sign-in"}>
+        <Link to={"/signin"}>
           <span className="text-blue-700">Sign in</span>
         </Link>
         {error && <p className="text-red-500 mt-5">{error}</p>}
