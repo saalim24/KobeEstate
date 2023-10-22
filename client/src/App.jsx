@@ -4,8 +4,8 @@ import Signin from "./Pages/Signin";
 import Signup from "./Pages/Signup";
 import About from "./Pages/About";
 import Profile from "./Pages/Profile";
-import Home from "./Pages/home";
-import Header from "./components/header";
+import Home from "./Pages/Home";
+import Header from "./components/Header";
 import PrivateRoute from "./components/PrivateRoute";
 
 export default function App() {
